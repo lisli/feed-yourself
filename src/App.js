@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import Tabletop from 'tabletop';
 import logo from './logo.svg';
 import './App.css';
 
-const FOOD_URL = 'https://spreadsheets.google.com/feeds/list/1czrNQfMugAcw7OyDCGwQ0v0vXrIBsuxfFCQlVDhFwLg/od6/public/values?alt=json';
+const FOOD_URL = 'https://docs.google.com/spreadsheets/d/1czrNQfMugAcw7OyDCGwQ0v0vXrIBsuxfFCQlVDhFwLg/pubhtml';
 
 class App extends Component {
 
@@ -12,11 +13,11 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch(FOOD_URL)
-      .then(response => response.json())
-      .then(json => {
-        this.setState({data: json});
-      });
+    Tabletop.init({ 
+      key: FOOD_URL,
+      callback: data => this.setState({data}),
+      simpleSheet: true 
+    });
   }
 
   render() {
