@@ -16,10 +16,7 @@ const displayItem = item => {
 
 class App extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = { data: null };
-  }
+  state = { data: null };
 
   componentDidMount() {
     Tabletop.init({ 
